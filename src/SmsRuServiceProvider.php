@@ -12,9 +12,11 @@ class SmsRuServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(SmsRuApi::class, function ($app) {
+
             $apiId = \Config::get('services')['sms_ru']['api_id'];
             $client = new SmsRuApi(new \Zelenin\SmsRu\Auth\ApiIdAuth($apiId), new \Zelenin\SmsRu\Client\Client());
             return $client;
+            
         });
     }
 
